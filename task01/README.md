@@ -1,4 +1,4 @@
-# lambda_hello_world
+# task01
 
 High level project overview - business value it brings, non-detailed technical overview.
 
@@ -7,9 +7,9 @@ All the technical details described below are actual for the particular
 version, or a range of versions of the software.
 ### Actual for versions: 1.0.0
 
-## lambda_hello_world diagram
+## task01 diagram
 
-![lambda_hello_world](pics/lambda_hello_world_diagram.png)
+![task01](pics/task01_diagram.png)
 
 ## Lambdas descriptions
 

@@ -24,7 +24,7 @@
     },
     "resource_type": "iam_policy"
   },
-  "HelloWorld-role": {
+  "hello_world-role": {
     "predefined_policies": [],
     "principal_service": "lambda",
     "custom_policies": [

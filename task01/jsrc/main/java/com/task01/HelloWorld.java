@@ -1,4 +1,4 @@
-package com.lambdahelloworld;
+package com.task01;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -8,13 +8,13 @@ import com.syndicate.deployment.model.RetentionSetting;
 import java.util.HashMap;
 import java.util.Map;
 
-@LambdaHandler(lambdaName = "HelloWorld",
-	roleName = "HelloWorld-role",
+@LambdaHandler(lambdaName = "hello_world",
+	roleName = "hello_world-role",
 	isPublishVersion = true,
 	aliasName = "${lambdas_alias_name}",
 	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
-public class Helloworld implements RequestHandler<Object, Map<String, Object>> {
+public class HelloWorld implements RequestHandler<Object, Map<String, Object>> {
 
 	public Map<String, Object> handleRequest(Object request, Context context) {
 		System.out.println("Hello from lambda");
