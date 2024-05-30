@@ -1,0 +1,7 @@
+.syndicate
+logs/
+.syndicate-config-*/
+.idea/
+*.iml
+target/
+sdk-layer-assembly.zip
