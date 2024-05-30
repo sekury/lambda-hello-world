@@ -21,8 +21,8 @@ import java.util.function.Function;
     lambdaName = "hello_world",
     roleName = "hello_world-role",
     layers = {"sdk-layer"},
-    isPublishVersion = true,
-    aliasName = "${lambdas_alias_name}",
+    runtime = DeploymentRuntime.JAVA11,
+    architecture = Architecture.ARM64,
     logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 @LambdaLayer(
