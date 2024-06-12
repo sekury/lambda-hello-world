@@ -13,29 +13,28 @@ import com.syndicate.deployment.model.RetentionSetting;
 import java.util.ArrayList;
 import java.util.List;
 
-@LambdaHandler(lambdaName = "sqs_handler",
-	roleName = "sqs_handler-role",
-	logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
+@LambdaHandler(
+    lambdaName = "sqs_handler",
+    roleName = "sqs_handler-role",
+    logsExpiration = RetentionSetting.SYNDICATE_ALIASES_SPECIFIED
 )
 @SqsTriggerEventSource(
-	targetQueue = "task04-sqs-queue",
-	batchSize = 5
+    targetQueue = "async_queue",
+    batchSize = 5
 )
-@DependsOn(name = "task04-sqs-queue", resourceType = ResourceType.SQS_QUEUE)
+@DependsOn(name = "async_queue", resourceType = ResourceType.SQS_QUEUE)
 public class SqsHandler implements RequestHandler<SQSEvent, SQSBatchResponse> {
 
-	public SQSBatchResponse handleRequest(SQSEvent sqsEvent, Context context) {
-		List<SQSBatchResponse.BatchItemFailure> batchItemFailures = new ArrayList<>();
-		LambdaLogger logger = context.getLogger();
-		for (SQSEvent.SQSMessage message : sqsEvent.getRecords()) {
-			try {
-				//process your message
-				logger.log(message.getBody());
-			} catch (Exception e) {
-				//Add failed message identifier to the batchItemFailures list
-				batchItemFailures.add(new SQSBatchResponse.BatchItemFailure(message.getMessageId()));
-			}
-		}
-		return new SQSBatchResponse(batchItemFailures);
-	}
+    public SQSBatchResponse handleRequest(SQSEvent sqsEvent, Context context) {
+        List<SQSBatchResponse.BatchItemFailure> batchItemFailures = new ArrayList<>();
+        LambdaLogger logger = context.getLogger();
+        for (SQSEvent.SQSMessage message : sqsEvent.getRecords()) {
+            try {
+                logger.log(message.getBody());
+            } catch (Exception e) {
+                batchItemFailures.add(new SQSBatchResponse.BatchItemFailure(message.getMessageId()));
+            }
+        }
+        return new SQSBatchResponse(batchItemFailures);
+    }
 }
