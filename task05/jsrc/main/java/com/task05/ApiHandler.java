@@ -26,7 +26,7 @@ public class ApiHandler implements RequestHandler<Map<String, Object>, Response>
     public ApiHandler() {
         DynamoDbClient standardClient = DynamoDbClient.builder().build();
         DynamoDbEnhancedClient enhancedClient = DynamoDbEnhancedClient.builder().dynamoDbClient(standardClient).build();
-        this.eventsTable = enhancedClient.table("cmtr-efbf7095-Events", TableSchema.fromBean(Event.class));
+        this.eventsTable = enhancedClient.table("cmtr-efbf7095-Events-test", TableSchema.fromBean(Event.class));
     }
 
     public Response handleRequest(Map<String, Object> request, Context context) {
