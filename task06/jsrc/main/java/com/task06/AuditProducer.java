@@ -17,6 +17,7 @@ import com.syndicate.deployment.annotations.lambda.LambdaHandler;
 import com.syndicate.deployment.annotations.resources.DependsOn;
 import com.syndicate.deployment.model.ResourceType;
 import com.syndicate.deployment.model.RetentionSetting;
+import java.time.Instant;
 import java.util.Map;
 import java.util.UUID;
 
@@ -56,7 +57,7 @@ public class AuditProducer implements RequestHandler<DynamodbEvent, Void> {
 
                 String id = UUID.randomUUID().toString();
                 String itemKey = newImage.get(KEY).getS();
-                String modificationTime = streamRecord.getApproximateCreationDateTime().toInstant().toString();
+                String modificationTime = Instant.now().toString();
 
                 Item item = new Item();
                 item.withPrimaryKey(ID, id);
